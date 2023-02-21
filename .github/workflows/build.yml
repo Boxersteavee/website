@@ -1,0 +1,23 @@
+name: Build and Deploy App
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set up npm
+          uses: actions/setup-node@v2
+          with:
+            node-version: '18.6.0'
+
+        - name: Install caprover
+          run: npm install -g caprover
+
+        - name: Caprover Deploy
+          run: caprover deploy -h '${{ secrets.CAPROVER_SERVER}}' -p '${{ secrets.CAPROVER_PASSWORD }}' -b 'main' -a 'astro-site'
