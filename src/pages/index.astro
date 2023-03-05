@@ -31,13 +31,14 @@ const projects = (await getCollection('work'))
 			<header class="hero">
 				<Hero
 					title="Hello, my name is Ben!"
-					tagline="This was made from a template, please don't take any of this site for what it says, until this message is removed."
+					tagline="This is my website, it should explain as much as you need to know about me. I have utilizied Astro to build this website."
 					align="start"
 				>
 					<div class="roles">
 						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
 						<Pill><Icon icon="paper-plane-tilt" size="1.33em" /> Student</Pill>
 						<Pill><Icon icon="pencil-line" size="1.33em" /> Human</Pill>
+						<Pill><Icon icon="rocket-launch" size="1.33em" /> Relatively Fast Typer</Pill>
 					</div>
 				</Hero>
 			</header>
@@ -49,7 +50,7 @@ const projects = (await getCollection('work'))
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Selected Work</h3>
-					<p>Take a look below at some of my featured work for clients from the past few years.</p>
+					<p>Here's some of the work I've done in the past</p>
 				</header>
 
 				<div class="gallery">
@@ -74,14 +75,13 @@ const projects = (await getCollection('work'))
 
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Mentions</h3>
+					<h3>Coming Soon...</h3>
 					<p>
-						I have been fortunate enough to recieve praise for my work in several publications. Take
-						a look below to learn more.
+						This site is still in development, and will be changing quite a lot. Expect some more content coming soon.
 					</p>
 				</header>
 
-				<div class="gallery">
+				<!-- <div class="gallery">
 					<Grid variant="small">
 						{
 							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
@@ -91,7 +91,7 @@ const projects = (await getCollection('work'))
 							))
 						}
 					</Grid>
-				</div>
+				</div> -->
 			</section>
 		</main>
 
