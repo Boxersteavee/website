@@ -11,5 +11,8 @@
 	},
 	"dependencies": {
 		"astro": "^2.0.14"
+	},
+	"devDependencies": {
+		"@astrojs/partytown": "^1.1.1"
 	}
 }
