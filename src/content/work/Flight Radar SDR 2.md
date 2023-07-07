@@ -1,5 +1,5 @@
 ---
-title: Flight Radar SDR -2.0
+title: Flight Radar SDR 2.0
 publishDate: 2019-12-01 00:00:00
 img: /assets/SDR2.jpg
 img_alt: A Raspberry Pi 1 (2011) with an SDR Device plugged in, with a home-made copper antenna calibrated at 1090MHz

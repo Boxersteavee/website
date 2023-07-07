@@ -1,5 +1,5 @@
 ---
-title: FR24 SDR
+title: Flight Radar SDR
 publishDate: 2019-12-01 00:00:00
 img: /assets/SDR.jpg
 img_alt: A Photo of an SBC (Single Board Computer) with an SDR (Software Defined Radio) Plugged in, with a 1090MHz antenna.
