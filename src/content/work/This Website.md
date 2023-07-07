@@ -1,7 +1,7 @@
 ---
 title: This Website
 publishDate: 2023-05-03 20:50:00
-img: /assets/Website.jpg
+img: "https://ik.imagekit.io/Boxersteavee/assets/Website.jpg"
 img_alt: Alt text for the above image
 description: |
  This website! Powered by Astro!
