@@ -10,8 +10,7 @@ import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
-import PortfolioPreview1 from '../components/ProjectsPreview.astro';
-import PortfolioPreview2 from '../components/PhotographyPreview.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
 
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
@@ -59,7 +58,7 @@ const projects = (await getCollection('projects'))
 						{
 							projects.map((project) => (
 								<li>
-									<PortfolioPreview1 project={project} />
+									<PortfolioPreview project={project} />
 								</li>
 							))
 						}
@@ -68,32 +67,6 @@ const projects = (await getCollection('projects'))
 
 				<div class="cta">
 					<CallToAction href="/projects/">
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
-				</div>
-			</section>
-
-			<section class="section with-background with-cta">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Photography</h3>
-					<p>Here's some of my recent photography content</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((photography) => (
-								<li>
-									<PortfolioPreview2 photography={photography} />
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-
-				<div class="cta">
-					<CallToAction href="/photography/">
 						View All
 						<Icon icon="arrow-right" size="1.2em" />
 					</CallToAction>
