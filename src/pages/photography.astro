@@ -4,31 +4,31 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 import ContactCTA from '../components/ContactCTA.astro';
-import PortfolioPreview from '../components/ProjectsPreview.astro';
+import PortfolioPreview from '../components/PhotographyPreview.astro';
 import Hero from '../components/Hero.astro';
 import Grid from '../components/Grid.astro';
 
-const projects = (await getCollection('projects')).sort(
+const photography = (await getCollection('photography')).sort(
 	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 ---
 
 <BaseLayout
-	title="My Projects | Boxersteavee"
-	description="Here's some of my recent projects, expect more coming soon!"
+	title="Photography | Boxersteavee"
+	description="Here's some of my photogrraphy content, expect more!"
 >
 	<div class="stack gap-20">
 		<main class="wrapper stack gap-8">
 			<Hero
-				title="My Projects"
-				tagline="See my most recent projects below to get an idea of my past experience."
+				title="Photography"
+				tagline="Below, you'll see all my photography content, you can explore for yourself to see my understanding of photography"
 				align="start"
 			/>
 			<Grid variant="offset">
 				{
-					projects.map((project) => (
+					photography.map((photography) => (
 						<li>
-							<PortfolioPreview project={project} />
+							<PortfolioPreview photography={photography} />
 						</li>
 					))
 				}
