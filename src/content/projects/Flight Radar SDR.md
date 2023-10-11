@@ -1,7 +1,7 @@
 ---
 title: Flight Radar SDR
 publishDate: 2019-12-01 00:00:00
-img: "https://ik.imagekit.io/Boxersteavee/assets/SDR.jpg"
+img: "https://cdn.boxersteavee.dev/cdn-cgi/imagedelivery/8mDeb5dj0w69F4TILSzPUQ/6cc713a4-bc79-492e-ca10-6f4bf1be0100/public"
 img_alt: A Photo of an SBC (Single Board Computer) with an SDR (Software Defined Radio) Plugged in, with a 1090MHz antenna.
 description: |
   This page describes my SDR Project, getting my SDR gear to transmit ADS-B Data to FlightRadar 24.
