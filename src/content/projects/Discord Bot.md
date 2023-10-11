@@ -1,7 +1,7 @@
 ---
 title: Discord Bot
 publishDate: 2023-05-03 20:50:00
-img: "https://ik.imagekit.io/Boxersteavee/assets/JARD-Bot.jpg"
+img: "https://cdn.boxersteavee.dev/cdn-cgi/imagedelivery/8mDeb5dj0w69F4TILSzPUQ/978cc4eb-ae6c-4bc1-d728-06ab36c53700/public"
 img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
 description: |
   I made a Discord Bot in python!
