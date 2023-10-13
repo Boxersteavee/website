@@ -33,6 +33,36 @@ export default defineConfig({
             required: true,
           },
           {
+            type: "datetime",
+            name: "publishDate",
+            label: "Date Posted",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "img",
+            label: "Feature Image ID",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "img_alt",
+            label: "Feature Image Alt Text",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            required: true,
+          },
+          {
+            type: "rich-text",
+            name: "tags",
+            label: "Tags",
+            required: true,
+          },
+                    {
             type: "rich-text",
             name: "body",
             label: "Body",
