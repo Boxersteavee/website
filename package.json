@@ -5,12 +5,14 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro build",
+		"build": "tinacms build && astro build",
 		"preview": "astro preview",
 		"astro": "astro"
 	},
 	"dependencies": {
-		"astro": "^3.0.12"
+		"@tinacms/cli": "^1.5.30",
+		"astro": "^3.0.12",
+		"tinacms": "^1.5.21"
 	},
 	"devDependencies": {
 		"@astrojs/partytown": "^1.1.1"
