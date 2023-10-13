@@ -8,9 +8,7 @@ description: >-
   The process of setting up Tina CMS, and eventually getting an amazing Content
   Management System that does exactly what I need.
 tags: |
-  * Tina CMS
-  * Cloudflare Pages
-  * Cloudflare Images
+  Tina CMS,Cloudflare Pages,Cloudflare Images
 ---
 
 My website has had a few Major Upgrades, including implementing an easy-to-use Content Management System, switching to Cloudflare Pages, and implementing Cloudflare Images. Keep reading to learn more about these upgrades, and how they will assist me in posting more content to this site.
