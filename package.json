@@ -10,9 +10,9 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"astro": "^4.0.3"
+		"astro": "^4.9.2"
 	},
 	"devDependencies": {
-		"@astrojs/partytown": "^2.0.2"
+		"@astrojs/partytown": "^2.1.0"
 	}
 }
