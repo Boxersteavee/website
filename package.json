@@ -1,13 +1,16 @@
 {
 	"name": "e-website-new-new-website",
 	"type": "module",
-	"version": "1.3.1",
+	"version": "1.3.3",
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"push": "npm version patch && git push",
+		"push-minor": "npm version minor && git push",
+		"push-major": "npm version major && git push"
 	},
 	"dependencies": {
 		"@astrojs/solid-js": "^4.2.0",
