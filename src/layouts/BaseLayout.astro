@@ -25,8 +25,6 @@ const { title, description } = Astro.props;
 				dataLayer.push(arguments);
 			  }
 		  
-			  // global function so that it can be called from anywhere
-			  // Updates consent for GA4 to granted if called
 			  window.consentGranted = function () {
 				console.log("consent granted");
 				gtag("consent", "update", {
@@ -38,8 +36,6 @@ const { title, description } = Astro.props;
 				});
 			  };
 		  
-			  // Returns value of a cookie named 'cookie-consent'
-			  // Should be either "granted" or "denied"
 			  window.getCookieConsent = function () {
 				try {
 				  const consent = document.cookie.match(/cookie-consent=([^;]+)/)[1];
