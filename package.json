@@ -7,7 +7,11 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"push": "npm version patch && git push",
+		"push-minor": "npm version minor && git push",
+		"push-major": "npm version major && git push"
+
 	},
 	"dependencies": {
 		"@astrojs/solid-js": "^4.2.0",
