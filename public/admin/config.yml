@@ -1,11 +1,3 @@
-backend:
-  name: git-gateway
-media_folder: "src/assets/images" # Location where files will be stored in the repo
-public_folder: "src/assets/images" # The src attribute for uploaded media
-media_library:
-  name: NA
-  config:
-    publicKey: NA
 collections:
   - name: "projects" # Used in routes, e.g., /admin/collections/blog
     label: "projects" # Used in the UI
@@ -17,3 +9,5 @@ collections:
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Featured Image", name: "thumbnail", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
+    media_folder: ""
+    public_folder: ""
