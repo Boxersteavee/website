@@ -16,7 +16,6 @@
 		"@astrojs/solid-js": "^4.2.0",
 		"@astrojs/tailwind": "^5.1.0",
 		"astro": "^4.9.2",
-		"decap-cms-app": "^3.1.10",
 		"solid-js": "^1.8.17",
 		"tailwindcss": "^3.4.3"
 	},
