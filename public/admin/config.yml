@@ -1,4 +1,3 @@
-
 collections:
   - name: "projects" # Used in routes, e.g., /admin/collections/blog
     label: "Projects" # Used in the UI
