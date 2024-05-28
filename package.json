@@ -6,7 +6,7 @@
 		"dev": "astro dev",
 		"start": "astro start",
 		"build": "astro build",
-		"dev-build": "cross-env BUILD_TYPE=dev && npm run astro build",
+		"dev-build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
 		"push": "npm version patch && git push",
