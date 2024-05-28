@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout title="Links | Boxersteavee" description="Links to my other presences on the web.">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="Links!"
+				tagline="This page contains links to my other presences on the World Wide Web!"
+			>
+			</Hero>
+
+            <section>
+                <h2 class="section-title">Boxersteavee</h2>
+                <div class="content">
+                    <p>This is my primary online presence. Almost all of my Online Profiles use this username.<br>Here's a list of my profiles on different social media:</p>
+					<br>
+                    <p><a href=https://discord.gg/FCQMjqqydG>Discord Server</a></p>
+					<p><a href=https://youtube.com/@Boxersteavee>YouTube Channel</a></p>
+					<p><a href=https://x.com/Boxersteavee>X/Twitter</a></p>
+                </div>
+            </section>
+			<section>
+				<h2 class="section-title">Curious Photos</h2>
+				<div class="content">
+                    <p>I do quite a lot of photography, and I have branded myself as "CuriousPhotos".<br>Here's a few links to where you can see my Photography:</p>
+                    <br>
+					<p><a href=https://curiousphotos.co.uk>CuriousPhotos Blog on Ghost</a></p>
+                    <p><a href=https://gallery.curiousphotos.co.uk/share/ZnMSjLTP>Photo Gallery on Photoview</a></p>
+                    <p><a href=https://www.youtube.com/@curioustrains>Curious Trains on YouTube</a></p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>
