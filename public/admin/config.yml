@@ -1,13 +1,14 @@
+
 collections:
   - name: "projects" # Used in routes, e.g., /admin/collections/blog
-    label: "projects" # Used in the UI
+    label: "Projects" # Used in the UI
     folder: "src/content/projects" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     fields: # The fields for each document, usually in frontmatter
+    media_folder: ""
+    public_folder: ""
       - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Featured Image", name: "thumbnail", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
-    media_folder: ""
-    public_folder: ""
