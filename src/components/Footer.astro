@@ -7,7 +7,7 @@ const currentYear = new Date().getFullYear();
 	<div class="group">
 		<p>&copy; {currentYear} Ben Harris</p>
 		<p>Built with <a href="https://astro.build">{Astro.generator}</p>
-		<p>Site Version: {import.meta.env.PKG_VERSION}</p>
+		<p>Site Version: {import.meta.env.PKG_VERSION}{import.meta.env.BUILD_TYPE === 'dev' ? '-dev' : ''}</p>
 		<p>You can see my Privacy Policy <a href="/privacy">here</a>.</p>
 	</div>
 	<p class="socials">
