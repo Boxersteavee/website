@@ -1,10 +1,10 @@
 {
 	"name": "boxersteavee-website",
 	"type": "module",
-	"version": "1.3.4",
+	"version": "1.3.5",
 	"scripts": {
 		"dev": "astro dev",
-		"start": "astro dev",
+		"start": "astro start",
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
@@ -20,6 +20,7 @@
 		"tailwindcss": "^3.4.3"
 	},
 	"devDependencies": {
-		"@astrojs/partytown": "^2.1.0"
+		"@astrojs/partytown": "^2.1.0",
+		"cross-env": "^7.0.3"
 	}
 }
