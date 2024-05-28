@@ -13,7 +13,6 @@
 		"push-major": "npm version major && git push"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^10.2.6",
 		"@astrojs/solid-js": "^4.2.0",
 		"@astrojs/tailwind": "^5.1.0",
 		"astro": "^4.9.2",
