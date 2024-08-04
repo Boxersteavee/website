@@ -13,4 +13,4 @@ tags:
 
 ---
 
-This website was made with the help of Astro, an amazing tool that helps build a website. I can use markdown, HTML, or a mixture. This website uses the "portfolio" template made by Jeanine White (I think)
+This website was made with the help of Astro, an amazing tool that helps build a website. I can use markdown, HTML, or a mixture. This website uses the "portfolio" template made by Jeanine White (I think). You can read more about it on its [wiki page](https://wiki.boxersteavee.dev/projects/main-site).
