@@ -12,4 +12,4 @@ tags:
   - Python
 ---
 
-JARD Bot (Just another Random Discord Bot) is my discord bot. I spent many hours creating it, and have published my work on my [GitHub](https://github.com/Boxersteavee/JARD-Bot) Page. The bot is a work in progress and I'm not sure if I'm gonna finish it, or publish it. But hey, atleast it'll be on GitHub so people can continue it, should I step down from development.
+JARD Bot (Just another Random Discord Bot) is my discord bot. I spent many hours creating it, and have published my work on a [GitHub](https://github.com/Boxersteavee/JARD-Bot) Page. The bot is no longer in development, as it was quite a lot of work for a student who's got other stuff to do. It did greatly increase my confidence in programming in Python. The code will stay up on GitHub as an archived project for anyone who wishes to have a look at it ~~and roast my code~~.
