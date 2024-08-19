@@ -1,23 +1,9 @@
-name: Dependabot and Combine PRs
+name: Combine PRs
 
 on:
   schedule:
     - cron: '0 2 * * 0' # Runs every Sunday at 2 AM
   workflow_dispatch: # Allows manual triggering
-
-jobs:
-  dependabot:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Run Dependabot
-        uses: dependabot/dependabot-core
-        with:
-          package-ecosystem: 'npm'
-          directory: '/'
-          target-branch: 'main'
 
   combine-prs:
     needs: dependabot
