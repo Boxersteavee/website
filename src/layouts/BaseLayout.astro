@@ -21,70 +21,18 @@ const { title, description } = Astro.props;
 			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1331553302216072"
      crossorigin="anonymous"></script>
 			<!-- Google tag (gtag.js) -->
-			<script is:inline>
-			  window.dataLayer = window.dataLayer || [];
-			  function gtag() {
-				dataLayer.push(arguments);
-			  }
-		  
-			  window.consentGranted = function () {
-				console.log("consent granted");
-				gtag("consent", "update", {
-				  ad_storage: "granted",
-				  analytics_storage: "granted",
-				  functionality_storage: "granted",
-				  personalization_storage: "granted",
-				  security_storage: "granted",
-				});
-			  };
-		  
-			  window.getCookieConsent = function () {
-				try {
-				  const consent = document.cookie.match(/cookie-consent=([^;]+)/)[1];
-				  return consent;
-				} catch (error) {
-				  return "unk";
+			<script
+				type="text/partytown"
+				src="https://www.googletagmanager.com/gtag/js?id=G-FBJ048PW4L">
+		  	</script>
+		  	<script type="text/partytown">
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+				  dataLayer.push(arguments);
 				}
-			  };
-		  
-			  if (window.getCookieConsent() == "granted") {
-				// If cookies already approved, set that
-				console.log("default set to granted");
-				gtag("consent", "default", {
-				  ad_storage: "granted",
-				  analytics_storage: "granted",
-				  functionality_storage: "granted",
-				  personalization_storage: "granted",
-				  security_storage: "granted",
-				});
-			  } else {
-				// default all to 'denied'.
-				console.log("default set to denied");
-				gtag("consent", "default", {
-				  ad_storage: "denied",
-				  analytics_storage: "denied",
-				  functionality_storage: "denied",
-				  personalization_storage: "denied",
-				  security_storage: "denied",
-				});
-			  }
-			</script>
-		  
-			<!-- Google Tag Manager -->
-			<script is:inline>
-			  (function (w, d, s, l, i) {
-				console.log("GTM");
-				w[l] = w[l] || [];
-				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-				var f = d.getElementsByTagName(s)[0],
-				  j = d.createElement(s),
-				  dl = l != "dataLayer" ? "&l=" + l : "";
-				j.async = true;
-				j.src = "https://www.googletagmanager.com/gtm.js?id=G-FBJ048PW4L" + i + dl;
-				f.parentNode.insertBefore(j, f);
-			  })(window, document, "script", "dataLayer", "G-FBJ048PW4L");
-			</script>
-			<!-- End Google Tag Manager -->
+				gtag("js", new Date());
+				gtag("config", "G-FBJ048PW4L");
+		  	</script>
 		  </head>
 		<MainHead title={title} description={description} />
 	</head>
