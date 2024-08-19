@@ -5,8 +5,8 @@ on:
     - cron: '0 2 * * 0' # Runs every Sunday at 2 AM
   workflow_dispatch: # Allows manual triggering
 
+jobs:
   combine-prs:
-    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
