@@ -13,11 +13,11 @@
 		"push-major": "npm version major && git push"
 	},
 	"dependencies": {
-		"@astrojs/sitemap": "^3.1.6",
+		"@astrojs/sitemap": "^3.2.0",
 		"@astrojs/solid-js": "^4.4.2",
 		"@astrojs/tailwind": "^5.1.1",
 		"astro": "^4.15.9",
-		"solid-js": "^1.8.22",
+		"solid-js": "^1.9.1",
 		"tailwindcss": "^3.4.13"
 	},
 	"devDependencies": {
