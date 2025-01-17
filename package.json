@@ -1,27 +1,17 @@
 {
-	"name": "boxersteavee-website",
-	"type": "module",
-	"version": "1.4.0",
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro start",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro",
-		"push": "npm version patch --no-git-tag-version && git push",
-		"push-minor": "npm version minor --no-git-tag-version && git push",
-		"push-major": "npm version major --no-git-tag-version && git push"
-	},
-	"dependencies": {
-		"@astrojs/sitemap": "^3.2.1",
-		"@astrojs/solid-js": "^5.0.1",
-		"@astrojs/tailwind": "^5.1.4",
-		"astro": "^5.1.1",
-		"solid-js": "^1.8.22",
-		"tailwindcss": "^3.4.11"
-	},
-	"devDependencies": {
-		"@astrojs/partytown": "^2.1.2",
-		"cross-env": "^7.0.3"
-	}
+  "name": "wiki",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.31.0",
+    "astro": "^5.1.5",
+    "sharp": "^0.32.5"
+  }
 }

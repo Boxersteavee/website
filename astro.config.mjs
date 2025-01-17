@@ -1,27 +1,29 @@
+// @ts-check
 import { defineConfig } from 'astro/config';
-import partytown from "@astrojs/partytown";
-import solidJs from "@astrojs/solid-js";
-import tailwind from "@astrojs/tailwind";
-import { fileURLToPath } from 'url';
-import { readFileSync } from 'fs';
-import sitemap from "@astrojs/sitemap";
-const file = fileURLToPath(new URL('package.json', import.meta.url));
-const json = readFileSync(file, 'utf8');
-const pkg = JSON.parse(json);
+import starlight from '@astrojs/starlight';
+import pkg from './package.json';
 
 
 // https://astro.build/config
 export default defineConfig({
+  integrations: [
+    starlight({
+      title: 'Boxersteavee.dev',
+      lastUpdated: true,
+      social: {
+        github: 'https://github.com/withastro/starlight',
+      },
+      sidebar: [
+        {
+          label: 'Projects',
+          autogenerate: { directory: 'projects' },
+        },
+      ],
+    }),
+  ],
   vite: {
     define: {
-      "import.meta.env.PKG_VERSION": JSON.stringify(pkg.version)
-    }
+      'import.meta.env.PKG_VERSION': JSON.stringify(pkg.version),
+    },
   },
-  site: 'https://boxersteavee.dev',
-  integrations: [partytown({
-    // Adds dataLayer.push as a forwarding-event.
-    config: {
-      forward: ["dataLayer.push"]
-    }
-  }), solidJs(), tailwind(), sitemap()]
 });
