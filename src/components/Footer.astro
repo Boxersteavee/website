@@ -1,0 +1,43 @@
+---
+const currentYear = new Date().getFullYear();
+import { Icon } from '@astrojs/starlight/components';
+
+const isDev = ['tests', 'dev'].includes(import.meta.env.CF_PAGES_BRANCH);
+---
+
+<footer>
+  <span>&copy; {currentYear} Ben Harris</span>
+  <span>•</span>
+  <span>Built with <a href="https://astro.build">{Astro.generator}</a></span>
+  <span>•</span>
+  <span>Site Version: {import.meta.env.PKG_VERSION}{isDev ? '-dev' : ''}</span>
+  <span>•</span>
+  <a href="/privacy">Privacy Policy</a>
+  <span>•</span>
+  <a href="<https://github.com/Boxersteavee/website">
+    <Icon name="github" size="1em" /> GitHub
+  </a>
+  <span>•</span>
+  <a href="<https://youtube.com/@Boxersteavee">
+    <Icon name="youtube" size="1em" /> YouTube
+  </a>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+  a {
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

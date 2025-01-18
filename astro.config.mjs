@@ -8,16 +8,37 @@ import pkg from './package.json';
 export default defineConfig({
   integrations: [
     starlight({
+      components: {
+        Footer: './src/components/Footer.astro',
+      },
       title: 'Boxersteavee.dev',
       lastUpdated: true,
       social: {
-        github: 'https://github.com/withastro/starlight',
+        discord: 'https://discord.gg/FCQMjqqydG',
+        github: 'https://github.com/Boxersteavee/website',
+        linkedin: 'https://www.linkedin.com/in/ben-harris42',
       },
       sidebar: [
+        {
+          label: 'Home',
+          link: '/',
+        },
         {
           label: 'Projects',
           autogenerate: { directory: 'projects' },
         },
+        {
+          label: 'About Me',
+          autogenerate: { directory: 'about' },
+        },
+        {
+          label: 'Privacy Policy',
+          link: '/privacy',
+        },
+      {
+        label: 'Archived',
+        autogenerate: {directory: 'archived'},
+      },
       ],
     }),
   ],
