@@ -1,0 +1,25 @@
+---
+import { getEntry } from 'astro:content';
+
+// Adjust the slug calculation for index files
+let slug = Astro.url.pathname.replace(/^\//, '').replace(/\/$/, '');
+if (slug.endsWith('/index')) {
+  slug = slug.replace(/\/index$/, '');
+}
+console.log('Current slug:', slug);
+
+const entry = await getEntry('docs', slug);
+console.log('Entry:', entry);
+
+const lastModified = entry?.data.lastUpdated || entry?.data.publishDate;
+console.log('Last Modified:', lastModified);
+---
+
+<div style="border: 1px solid red; padding: 5px;">
+  <p>GitLastUpdated Component</p>
+  {lastModified ? (
+    <p>Last updated: {lastModified.toString()}</p>
+  ) : (
+    <p>No last modified date found</p>
+  )}
+</div>
