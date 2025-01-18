@@ -18,6 +18,7 @@ export default defineConfig({
         discord: 'https://discord.gg/FCQMjqqydG',
         github: 'https://github.com/Boxersteavee/website',
         linkedin: 'https://www.linkedin.com/in/ben-harris42',
+        email: 'mailto:ben@boxersteavee.dev',
       },
       sidebar: [
         {

@@ -20,4 +20,5 @@ pnpm-debug.log*
 .DS_Store
 
 # manually added
-src/content/projects/.obsidian
+src/content/docs/projects/.obsidian
+.obsidian
