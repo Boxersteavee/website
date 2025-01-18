@@ -33,13 +33,13 @@ export default defineConfig({
           label: 'About Me',
           autogenerate: { directory: 'about' },
         },
-        {
-          label: 'Privacy Policy',
-          link: '/privacy',
-        },
       {
         label: 'Archived',
         autogenerate: {directory: 'archived'},
+      },
+      {
+        label: 'Privacy Policy',
+        link: '/privacy',
       },
       ],
     }),
