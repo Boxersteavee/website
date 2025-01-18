@@ -2,7 +2,7 @@
 const currentYear = new Date().getFullYear();
 import { Icon } from '@astrojs/starlight/components';
 
-const isDev = ['tests', 'dev'].includes(import.meta.env.CF_PAGES_BRANCH);
+const isDev = ['tests', 'dev'].includes(import.meta.env.CF_PAGES_BRANCH) || import.meta.env.DEV;
 ---
 
 <footer>
