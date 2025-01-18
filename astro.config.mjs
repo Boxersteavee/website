@@ -8,6 +8,7 @@ import pkg from './package.json';
 export default defineConfig({
   integrations: [
     starlight({
+      favicon: '/favicon.png',
       components: {
         Footer: './src/components/Footer.astro',
       },
