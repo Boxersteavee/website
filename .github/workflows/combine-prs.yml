@@ -16,7 +16,7 @@ jobs:
   combine-prs:
     runs-on: ubuntu-latest
 
-    if: github.actor == 'dependabot[bot]'
+    if: github.event_name == 'workflow_dispatch' || github.actor == 'dependabot[bot]'
 
     steps:
       - name: Checkout repository
