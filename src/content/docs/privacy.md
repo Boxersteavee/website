@@ -7,4 +7,4 @@ This website uses Cloudflare Analytics to monitor and improve performance. Cloud
 
 For more details on how Cloudflare handles data, please refer to their [Privacy Policy](https://www.cloudflare.com/privacypolicy/).
 
-If you have any Queries, please [email me](mailto://ben@boxersteavee.dev)
+If you have any Queries, please [email me](mailto:ben@boxersteavee.dev)

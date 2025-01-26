@@ -7,7 +7,11 @@ const allProjects = await getCollection('docs', (entry) =>
 );
 
 const recentProjects = allProjects
-  .sort((a, b) => new Date(b.data.publishDate || '').getTime() - new Date(a.data.publishDate || '').getTime())
+  .sort((a, b) => {
+    const dateA = a.data.lastUpdated || a.data.publishDate || new Date(0);
+    const dateB = b.data.lastUpdated || b.data.publishDate || new Date(0);
+    return dateB.getTime() - dateA.getTime();
+  })
   .slice(0, 4);
 ---
 

@@ -8,6 +8,7 @@ import pkg from './package.json';
 export default defineConfig({
   integrations: [
     starlight({
+      pagination: false,
       favicon: '/favicon.png',
       components: {
         Footer: './src/components/Footer.astro',
@@ -33,14 +34,14 @@ export default defineConfig({
           label: 'About Me',
           autogenerate: { directory: 'about' },
         },
-      {
-        label: 'Archived',
-        autogenerate: {directory: 'archived'},
-      },
-      {
-        label: 'Privacy Policy',
-        link: '/privacy',
-      },
+        {
+          label: 'Archived',
+          autogenerate: {directory: 'archived'},
+        },
+        {
+          label: 'Privacy Policy',
+          link: '/privacy',
+        },
       ],
     }),
   ],
