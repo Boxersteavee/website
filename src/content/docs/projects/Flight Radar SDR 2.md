@@ -1,16 +1,9 @@
 ---
 title: Flight Radar SDR 2.0
-publishDate: 2023-05-06 18:35:34
-img: "https://cdn.boxersteavee.dev/cdn-cgi/imagedelivery/8mDeb5dj0w69F4TILSzPUQ/a532d284-bb1f-43d7-62fb-173754426e00/public"
-img_alt: A Raspberry Pi 1 (2011) with an SDR Device plugged in, with a home-made copper antenna calibrated at 1090MHz
-description: |
-  This project is my second Flight Radar SDR "radar". Running an original raspberry pi, and a home-made copper SDR antenna
-tags:
-  - SDR
-  - Flight Radar
-  - Raspberry Pi
-
+description: This project is my second Flight Radar SDR "radar". Running an original raspberry pi, and a home-made copper SDR antenna
 ---
+
+![A Raspberry Pi 1 (2011) with an SDR Device plugged in, with a home-made copper antenna calibrated at 1090MHz](https://cdn.boxersteavee.dev/cdn-cgi/imagedelivery/8mDeb5dj0w69F4TILSzPUQ/a532d284-bb1f-43d7-62fb-173754426e00/public)
 
 I did it again! I made another Flight Radar Radar thingy majiggy!
 

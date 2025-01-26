@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+const allProjects = await getCollection('docs', (entry) => 
+  entry.id.startsWith('projects/') && !entry.id.endsWith('index.md')
+);
+
+const recentProjects = allProjects
+  .sort((a, b) => {
+    const dateA = a.data.lastUpdated || a.data.publishDate || new Date(0);
+    const dateB = b.data.lastUpdated || b.data.publishDate || new Date(0);
+    return dateB.getTime() - dateA.getTime();
+  })
+  .slice(0, 4);
+---
+
+<CardGrid stagger>
+  {recentProjects.map((project) => (
+    <LinkCard
+      key={project.id}
+      title={project.data.title || 'Untitled Project'}
+      description={project.data.description || 'No description available'}
+      href={`/${project.id}/`}
+    />
+  ))}
+</CardGrid>

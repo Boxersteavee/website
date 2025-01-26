@@ -1,17 +1,9 @@
 ---
-title: Major Upgrades to the Website!
-publishDate: 2023-10-12T23:00:00.000Z
-img: https://cdn.boxersteavee.dev/cdn-cgi/imagedelivery/8mDeb5dj0w69F4TILSzPUQ/ea7c4bea-e78c-45b5-5cb2-d3f33d393c00/public
-img_alt: An image of the Tina Dashboard Sidebar.
+title: Tina CMS and Other Upgrades
 description:
-  The process of setting up Tina CMS, and eventually getting an amazing Content
-  Management System that does exactly what I need.
-tags: 
-  - Tina CMS
-  - Cloudflare Pages
-  - Cloudflare Images
-
+  The process of setting up Tina CMS, and a few other upgrades.
 ---
+![An image of the Tina Dashboard Sidebar](https://cdn.boxersteavee.dev/cdn-cgi/imagedelivery/8mDeb5dj0w69F4TILSzPUQ/ea7c4bea-e78c-45b5-5cb2-d3f33d393c00/public)
 
 My website has had a few Major Upgrades, including implementing an easy-to-use Content Management System, switching to Cloudflare Pages, and implementing Cloudflare Images. Keep reading to learn more about these upgrades, and how they will assist me in posting more content to this site.
 
