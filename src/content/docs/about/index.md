@@ -2,7 +2,8 @@
 title: About Me
 ---
 
-# Hi! I'm Ben Harris!
+Hi! I'm Ben Harris!
+
 Thanks for visiting my site. Read more about me below!
 ## Background
 I'm a 6th form student of the North East Futures UTC in Newcastle, England. I'm 16 years old, I love coding, 3D Printing, Networking and more!
@@ -19,7 +20,8 @@ The subjects i am studying are:
 - Working an Ender 3 Pro 3D Printer
 - Typing relatively fast
 ## Hobbies
-I enjoy doing as much as I can, but my top hobbies are as follows:<br>- Learning what I can with content found on the internet<br>
+I enjoy doing as much as I can, but my top hobbies are as follows:
+- Learning what I can with content found on the internet
 - Coding
 - 3D Printing
 - Photography
