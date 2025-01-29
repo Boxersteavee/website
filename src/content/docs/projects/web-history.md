@@ -3,7 +3,7 @@ title: My Website's History
 description: The entire history of Boxersteavee.dev.
 ---
 ## The Beginnings
-I bought this domain, `boxersteavee.dev`, all the way back in September 2021, and my website has gone through quite a few evolutions since then. It started out as a basic google sites webpage, with a few bits explaining a who I am and other presences I have on the internet. I then played about with [Ghost](https://ghost.org) for a while, which is a blogging tool that many news websites use. I ran that for a while until around December 2022, when I first discovered Astro. 
+I bought this domain, `boxersteavee.dev`, all the way back in September 2021, and my website has gone through quite a few evolutions since then. It started out as a basic Google Sites webpage, with a few bits explaining a who I am and other presences I have on the internet. I then played about with [Ghost](https://ghost.org) for a while, which is a blogging tool that many news websites use. I ran that for a while until around December 2022, when I first discovered Astro. 
 
 ## An Astro-nomical Discovery
 Around December 2022, [a friend named Alfie](https://itsmealfie0.com) told me about Astro. I gave it a bit of a tinker about, setup a basic site using the default template and gave it a test. I found it cool, but didn’t really know what else to do with it. In Early 2023, I discovered Astro Templated, and picked the [Official Portfolio template](https://astro.build/themes/details/portfolio/), which I customised and added content to. This is how my website looked from around February 2023, up until Late-January 2025, when I decided to switch over to [Astro Starlight](https://starlight.astro.build).
