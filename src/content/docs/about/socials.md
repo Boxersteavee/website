@@ -16,6 +16,7 @@ Here's a list of my profiles on different social media:
 - [YouTube Channel](https://youtube.com/@Boxersteavee)  
 - [X/Twitter](https://x.com/Boxersteavee)  
 - [Wiki Page](https://wiki.boxersteavee.dev)  
+- [Bluesky](https://bsky.app/profile/boxersteavee.dev)
 
 ---
 
