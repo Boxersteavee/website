@@ -24,6 +24,7 @@ I enjoy doing as much as I can, but my top hobbies are as follows:
 - Learning what I can with content found on the internet
 - Coding
 - 3D Printing
+- Gaming
 - Photography
 - Astronomy
 - Piano
