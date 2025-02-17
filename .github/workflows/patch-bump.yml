@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Bump patch version
-        run: npm run patch
+        run: npm version patch
 
       - name: Commit and push version bump
         run: |
