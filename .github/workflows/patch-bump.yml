@@ -1,0 +1,37 @@
+name: Bump Patch Version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bump-patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bump patch version
+        run: npm run patch
+
+      - name: Commit and push version bump
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add package.json package-lock.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: bump patch version"
+          git push origin HEAD:${{ github.ref }}
