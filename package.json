@@ -1,7 +1,7 @@
 {
   "name": "website",
   "type": "module",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -9,8 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "push": "npm version patch --no-git-tag-version && git push",
-		"push-minor": "npm version minor --no-git-tag-version && git push",
-		"push-major": "npm version major --no-git-tag-version && git push"
+    "push-minor": "npm version minor --no-git-tag-version && git push",
+    "push-major": "npm version major --no-git-tag-version && git push"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.32.2",
