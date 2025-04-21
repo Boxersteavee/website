@@ -53,12 +53,12 @@ jobs:
           git commit -m "chore: bump patch version to ${{ steps.get_version.outputs.new_version }}"
           git push origin dependabot
 
-      - name: Create Pull Request to main
+      - name: Create Pull Request to master
         uses: repo-sync/pull-request@v2
         if: steps.check_changes.outputs.has_changes == 'true'
         with:
           source_branch: dependabot
-          destination_branch: main
+          destination_branch: master
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_title: "Merge Dependabot updates - Version ${{ steps.get_version.outputs.new_version }}"
           pr_body: |
