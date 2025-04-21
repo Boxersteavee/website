@@ -13,7 +13,7 @@
     "push-major": "npm version major --no-git-tag-version && git push"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.32.2",
+    "@astrojs/starlight": "^0.34.0",
     "astro": "^5.7.4",
     "sharp": "^0.33.5"
   }
