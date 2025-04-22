@@ -15,12 +15,12 @@ The subjects i am studying are:
 - AS Core Maths
 - EPQ (Y13)
 ## Skills
-- Piano, I recently passed Grade 4 Piano
-- Coding, I love coding. Fun fact: This website was made using [Astro Starlight](https://starlight.astro.build)
+- Piano, I passed Grade 4 Piano in 2023, and I'm currently working towards Grade 5!
+- Coding, I love coding.
 - Working an Ender 3 Pro 3D Printer
 - Typing relatively fast
 ## Hobbies
-I enjoy doing as much as I can, but my top hobbies are as follows:
+I enjoy doing as much as I can, but my top hobbies are as follows (in no particular order):
 - Learning what I can with content found on the internet
 - Coding
 - 3D Printing
@@ -30,5 +30,7 @@ I enjoy doing as much as I can, but my top hobbies are as follows:
 - Piano
 - Networking
 - Volunteering with Beaver Scouts
-- Hiking and Camping with Explorer Scouts
-- ...and loads more
+- Hiking, Camping and other fun stuff with Explorer Scouts
+- ...and loads more!!
+
+<sub>Published 18th January 2025</sub>
