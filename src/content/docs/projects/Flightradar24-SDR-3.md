@@ -18,4 +18,4 @@ When looking for replacements, I decided that an official Raspberry Pi would pro
 
 Setting up took about an hour. I wrote the Flightradar 24 Pi24 image to an SD card, and booted the Pi. I had some issues with setting up WiFi, and giving it the original Sharing ID, but once I had that sorted, it just worked! Now I have a working SDR feeder at home again, feeding information from the skies to the interwebs for nerds like me to be fascinated by :D
 
-<sub>Published 22nd April 2025</sub>
+<sub>Published 22nd April 2025</sub> 
