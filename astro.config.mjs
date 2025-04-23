@@ -13,6 +13,7 @@ export default defineConfig({
       favicon: '/favicon.png',
       components: {
         Footer: './src/components/Footer.astro',
+        Head: './src/components/Head.astro',
       },
       title: 'Boxersteavee.dev',
       lastUpdated: true,
