@@ -33,3 +33,5 @@ Have a poke around, head to [the projects page](https://boxersteavee.dev/project
 ### Update #1
 
 Due to the great the way TinaCMS formats "raw markdown", I would still have to open a text editor and manually tweak the build in order for it to be added to the site. For this reason, I have decided to remove TinaCMS, and I am looking for alternatives. The other two upgrades mentioned in this post are still in use.
+
+<sub>Published 13th October 2023</sub>

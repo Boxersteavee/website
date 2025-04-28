@@ -6,21 +6,23 @@ import pkg from './package.json';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://boxersteavee.dev',
   integrations: [
     starlight({
       pagination: false,
       favicon: '/favicon.png',
       components: {
         Footer: './src/components/Footer.astro',
+        Head: './src/components/Head.astro',
       },
       title: 'Boxersteavee.dev',
       lastUpdated: true,
-      social: {
-        discord: 'https://discord.gg/FCQMjqqydG',
-        github: 'https://github.com/Boxersteavee/website',
-        linkedin: 'https://www.linkedin.com/in/ben-harris42',
-        email: 'mailto:ben@boxersteavee.dev',
-      },
+      social: [
+        { label: 'Discord', href: 'https://discord.gg/FCQMjqqydG', icon: 'discord' },
+        { label: 'GitHub', href: 'https://github.com/Boxersteavee/website', icon: 'github' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ben-harris42', icon: 'linkedin' },
+        { label: 'Email', href: 'mailto:ben@boxersteavee.dev', icon: 'email' },
+      ],      
       sidebar: [
         {
           label: 'Home',

@@ -19,3 +19,5 @@ Web hosting can be complicated. Initially, when this page was just a simple Goog
 Alfie then told me about [Oracle Cloud](https://www.oracle.com/uk/cloud/). After setting up a free tier account, he guided me through setting up [CapRover](https://caprover.com/) and hosting my Astro Site on there. That is roughly when I started using the Astro Template I had before. It ran like that for quite a while, and was very stable.
 
 I later discovered [Cloudflare Pages](https://pages.cloudflare.com/), and how easy it is to use compared to CapRover. Moving over was as simple as linking GitHub and Cloudflare, setting up a pages instance and clicking "Deploy". My site has run on Cloudflare Pages perfectly fine and has an uptime on-par with most websites.
+
+<sub>Published 26th January 2025</sub>

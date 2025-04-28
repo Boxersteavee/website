@@ -1,0 +1,9 @@
+---
+// src/components/CustomHead.astro
+import Default from '@astrojs/starlight/components/Head.astro';
+---
+
+<Default {...Astro.props}>
+    <script defer data-domain="boxersteavee.dev" src="https://plausible.io/js/script.hash.outbound-links.js"></script>
+  <slot />
+</Default>

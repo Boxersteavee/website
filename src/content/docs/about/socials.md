@@ -28,3 +28,5 @@ Here’s a few links to where you can see my photography:
 - [CuriousPhotos Blog](https://curiousphotos.co.uk)  
 - [Photo Gallery on Photoview](https://gallery.curiousphotos.co.uk/share/ZnMSjLTP)  
 - [Curious Trains on YouTube](https://www.youtube.com/@curioustrains)  
+
+<sub>Published 26th January 2025</sub>
