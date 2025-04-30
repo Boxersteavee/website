@@ -1,21 +1,21 @@
 name: Bump Patch and Create PR
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Manually trigger this workflow
 
 jobs:
   bump-and-create-pr:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write # To commit and push the version bump
+      pull-requests: write # To create the pull request
     steps:
       - name: Checkout dependabot branch
         uses: actions/checkout@v4
         with:
-          ref: dependabot
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: dependabot # Checkout the dependabot branch
+          fetch-depth: 0 # Fetch full history for npm version
+          token: ${{ secrets.GITHUB_TOKEN }} # Required for pushing changes
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -31,36 +31,27 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Check for changes before bumping
-        id: check_changes
-        run: |
-          git diff --quiet || echo "::set-output name=has_changes::true"
-          git diff --staged --quiet || echo "::set-output name=has_changes::true"
-
       - name: Bump patch version
-        if: steps.check_changes.outputs.has_changes == 'true'
-        run: npm version patch
+        run: npm version patch # Always bump the patch version when triggered
 
       - name: Get new version
-        if: steps.check_changes.outputs.has_changes == 'true'
         id: get_version
         run: echo "::set-output name=new_version::$(node -p "require('./package.json').version")"
 
       - name: Commit and push version bump
-        if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           git add package.json package-lock.json
-          git commit -m "chore: bump patch version to ${{ steps.get_version.outputs.new_version }}"
+          # Check if there are staged changes (from npm version patch) before committing
+          git diff --staged --quiet || git commit -m "chore: bump patch version to ${{ steps.get_version.outputs.new_version }}"
           git push origin dependabot
 
       - name: Create Pull Request to master
         uses: repo-sync/pull-request@v2
-        if: steps.check_changes.outputs.has_changes == 'true'
         with:
-          source_branch: dependabot
-          destination_branch: master
+          source_branch: dependabot # Create PR from dependabot
+          destination_branch: master # To the master branch
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_title: "Merge Dependabot updates - Version ${{ steps.get_version.outputs.new_version }}"
           pr_body: |
             This PR contains combined Dependabot updates and a patch version bump to ${{ steps.get_version.outputs.new_version }}.
-          pr_allow_empty: false
+          pr_allow_empty: true # Allow creating a PR even if the only change is the version bump
