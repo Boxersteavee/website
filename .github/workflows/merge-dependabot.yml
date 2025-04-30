@@ -6,7 +6,7 @@ on:
     branches:
       - dependabot
   workflow_dispatch:
-  
+
 jobs:
   merge-dependabot-pr:
     runs-on: ubuntu-latest
@@ -17,18 +17,53 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: dependabot
+          ref: dependabot # Checkout the dependabot branch
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Merge Dependabot PR
+      # This step will only run when triggered by a pull_request event
+      - name: Merge Dependabot PR (on PR event)
+        if: github.event_name == 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Fetch the head of the PR before merging
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:${{ github.head_ref }}
+          # Merge the fetched PR branch into dependabot
           git merge --no-ff ${{ github.head_ref }} -m "Merge Dependabot PR: ${{ github.event.pull_request.title }}"
           git push origin dependabot
 
-      - name: Close Dependabot PR
-        run: gh pr close ${{ github.event.pull_request.number }}
+      # This step will only run when triggered by workflow_dispatch
+      - name: Merge all open Dependabot PRs (on manual trigger)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Get all open Dependabot PRs targeting the dependabot branch
+          gh pr list --state open --base dependabot --search "author:app/dependabot" --json number headRefName title | jq -c '.[]' | while read pr; do
+            pr_number=$(echo $pr | jq -r '.number')
+            head_ref=$(echo $pr | jq -r '.headRefName')
+            pr_title=$(echo $pr | jq -r '.title')
+            echo "Attempting to merge PR #$pr_number: $pr_title"
+            # Checkout dependabot to ensure we are on the correct branch before merging
+            git checkout dependabot
+            # Fetch the head of the PR specifically
+            git fetch origin pull/$pr_number/head:$head_ref || { echo "Fetch of PR #$pr_number failed. Skipping merge and close."; continue; }
+            # Merge the PR branch into dependabot
+            git merge --no-ff $head_ref -m "Merge Dependabot PR #$pr_number: $pr_title" || { echo "Merge of PR #$pr_number failed. Skipping close."; continue; }
+            # Push the changes
+            git push origin dependabot || { echo "Push after merging PR #$pr_number failed. Skipping close."; continue; }
+            # Close the merged PR
+            gh pr close $pr_number --confirm || echo "Closing PR #$pr_number failed."
+            # Clean up the fetched branch
+            git branch -d $head_ref || echo "Failed to clean up branch $head_ref."
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # This step will only run when triggered by a pull_request event
+      - name: Close Dependabot PR (on PR event)
+        if: github.event_name == 'pull_request'
+        run: gh pr close ${{ github.event.pull_request.number }} --confirm
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
