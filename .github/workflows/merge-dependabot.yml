@@ -37,8 +37,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Get all open Dependabot PRs targeting the dependabot branch
-          # Corrected jq usage: comma-separated fields without spaces
           gh pr list --state open --base dependabot --search "author:app/dependabot" --json number,headRefName,title | jq -c '.[]' | while read pr; do
             pr_number=$(echo $pr | jq -r '.number')
             head_ref=$(echo $pr | jq -r '.headRefName')
@@ -48,7 +46,8 @@ jobs:
             git fetch origin pull/$pr_number/head:$head_ref || { echo "Fetch of PR #$pr_number failed. Skipping merge and close."; continue; }
             git merge --no-ff $head_ref -m "Merge Dependabot PR #$pr_number: $pr_title" || { echo "Merge of PR #$pr_number failed. Skipping close."; continue; }
             git push origin dependabot || { echo "Push after merging PR #$pr_number failed. Skipping close."; continue; }
-            gh pr close $pr_number --confirm || echo "Closing PR #$pr_number failed."
+            # Corrected gh pr close command - removed --confirm
+            gh pr close $pr_number || echo "Closing PR #$pr_number failed."
             git branch -d $head_ref || echo "Failed to clean up branch $head_ref."
           done
         env:
@@ -57,6 +56,6 @@ jobs:
       # This step will only run when triggered by a pull_request event
       - name: Close Dependabot PR (on PR event)
         if: github.event_name == 'pull_request'
-        run: gh pr close ${{ github.event.pull_request.number }} --confirm
+        run: gh pr close ${{ github.event.pull_request.number }} --confirm # Keep --confirm here as it is used in the original PR event
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
