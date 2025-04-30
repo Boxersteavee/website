@@ -13,6 +13,10 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    # Add a condition to check the PR author
+    if: |
+      github.event_name == 'workflow_dispatch' || # Always run on manual trigger
+      github.actor == 'dependabot[bot]' # Only run if the author is dependabot[bot]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,9 +25,9 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # This step will only run when triggered by a pull_request event
+      # This step will only run when triggered by a pull_request event AND the author is dependabot[bot]
       - name: Merge Dependabot PR (on PR event)
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -46,16 +50,15 @@ jobs:
             git fetch origin pull/$pr_number/head:$head_ref || { echo "Fetch of PR #$pr_number failed. Skipping merge and close."; continue; }
             git merge --no-ff $head_ref -m "Merge Dependabot PR #$pr_number: $pr_title" || { echo "Merge of PR #$pr_number failed. Skipping close."; continue; }
             git push origin dependabot || { echo "Push after merging PR #$pr_number failed. Skipping close."; continue; }
-            # Corrected gh pr close command - removed --confirm
             gh pr close $pr_number || echo "Closing PR #$pr_number failed."
             git branch -d $head_ref || echo "Failed to clean up branch $head_ref."
           done
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # This step will only run when triggered by a pull_request event
+      # This step will only run when triggered by a pull_request event AND the author is dependabot[bot]
       - name: Close Dependabot PR (on PR event)
-        if: github.event_name == 'pull_request'
-        run: gh pr close ${{ github.event.pull_request.number }} --confirm # Keep --confirm here as it is used in the original PR event
+        if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
+        run: gh pr close ${{ github.event.pull_request.number }} --confirm
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
