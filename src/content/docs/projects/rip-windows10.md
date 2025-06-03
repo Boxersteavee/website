@@ -1,6 +1,6 @@
 ---
 title: RIP Windows 10 - A Countdown to the End of an Era
-description: Windows 10's end is approaching. I made a countdown clock, and wrote this article to raise awareness for what that means for you, and everyone else still running Windows 10.
+description: Windows 10's End of Life is approaching... So I made a countdown clock and wrote this article to raise awareness for what that means for you, and everyone else still running Windows 10.
 ---
 
 Windows 10 has been a major part of many people's lives for over a decade now, at one being used by over 80% of desktop computers. I've pretty much grown up on Windows 10, and many others have too, however all good things must come to an end.
