@@ -3,7 +3,7 @@ title: RIP Windows 10 - A Countdown to the End of an Era
 description: Windows 10's End of Life is approaching... So I made a countdown clock and wrote this article to raise awareness for what that means for you, and everyone else still running Windows 10.
 ---
 
-Windows 10 has been a major part of many people's lives for over a decade now, at one being used by over 80% of desktop computers. I've pretty much grown up on Windows 10, and many others have too, however all good things must come to an end.
+Windows 10 has been a major part of many people's lives for over a decade now, at one point being used by over 80% of desktop computers. I've pretty much grown up on Windows 10, and many others have too, however all good things must come to an end.
 
 With the announcement of Windows 11 in late August 2021, Microsoft also quietly announced that Windows 10 would be reaching it's End of Life on October 14th 2025, which is now 4 months away at the time of writing. This date has been creeping closer and closer, and not many people realise how important it is. For this reason, I made a countdown clock at [RIPWindows10.com](https://ripwindows10.com), with the help of my friend [Xcissors](https://atserver.us/) to raise awareness of 
 how little time we have left.
