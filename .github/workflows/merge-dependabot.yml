@@ -59,6 +59,6 @@ jobs:
       # This step will only run when triggered by a pull_request event AND the author is dependabot[bot]
       - name: Close Dependabot PR (on PR event)
         if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
-        run: gh pr close ${{ github.event.pull_request.number }} --confirm
+        run: gh pr close ${{ github.event.pull_request.number }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
