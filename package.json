@@ -1,7 +1,7 @@
 {
   "name": "website",
   "type": "module",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -13,8 +13,8 @@
     "push-major": "npm version major --no-git-tag-version && git push"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.34.1",
-    "astro": "^5.12.8",
-    "sharp": "^0.33.5"
+    "@astrojs/starlight": "^0.35.2",
+    "astro": "^5.13.3",
+    "sharp": "^0.34.3"
   }
 }
