@@ -12,7 +12,7 @@ const recentProjects = allProjects
     const dateB = b.data.lastUpdated || b.data.publishDate || new Date(0);
     return dateB.getTime() - dateA.getTime();
   })
-  .slice(0, 4);
+  .slice(0, 8);
 ---
 
 <CardGrid stagger>

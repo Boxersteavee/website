@@ -6,7 +6,7 @@ Hi! I'm Ben Harris!
 
 Thanks for visiting my site. Read more about me below!
 ## Background
-I'm a 6th form student of the North East Futures UTC in Newcastle, England. I'm 16 years old, I love coding, 3D Printing, Networking and more!
+I'm a 6th form student of the North East Futures UTC in Newcastle, England. I'm 17 years old, I love coding, 3D Printing, Networking and more!
 ## Education
 I'm Studying for my A-Levels in Year 12 at the moment
 The subjects i am studying are:

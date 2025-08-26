@@ -15,8 +15,8 @@ jobs:
       pull-requests: write
     # Add a condition to check the PR author
     if: |
-      github.event_name == 'workflow_dispatch' || # Always run on manual trigger
-      github.actor == 'dependabot[bot]' # Only run if the author is dependabot[bot]
+      github.event_name == 'workflow_dispatch' ||
+      github.actor == 'dependabot[bot]'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
