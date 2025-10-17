@@ -1,6 +1,9 @@
 ---
-title: Flightradar24 SDR 2.0
+title: FlightRadar24 SDR 2.0
 description: This project is my second Flightradar24 SDR feeder. Running an original raspberry pi, and a home-made copper SDR antenna
+sidebar:
+    label: FlightRadar SDR 2.0
+    order: 1
 ---
 
 ![A Raspberry Pi 1 (2011) with an SDR Device plugged in, with a home-made copper antenna calibrated at 1090MHz](https://cdn.boxersteavee.dev/cdn-cgi/imagedelivery/8mDeb5dj0w69F4TILSzPUQ/a532d284-bb1f-43d7-62fb-173754426e00/largesquare)

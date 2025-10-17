@@ -1,6 +1,9 @@
 ---
 title: FlightRadar24 SDR 3.0
 description: This project is my new upgraded version of my original Flightradar24 SDR, using a Raspberry Pi 3b+, a nooelec smart NESDR and a 15db 1090MHz antenna.
+sidebar:
+    label: FlightRadar SDR 3.0
+    order: 1
 ---
 ![A Raspberry Pi 3B+ sitting on a shelf in a small metal shed, with an SDR device plugged into it.](https://imagedelivery.net/8mDeb5dj0w69F4TILSzPUQ/46f70531-0e9c-485b-4659-40f8248fd700/largesquare)
 
