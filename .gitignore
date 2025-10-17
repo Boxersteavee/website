@@ -22,3 +22,4 @@ pnpm-debug.log*
 # manually added
 src/content/docs/projects/.obsidian
 .obsidian
+package-lock.json
