@@ -1,6 +1,8 @@
 ---
 title: Projects
 description: An overview of all my projects
+sidebar:
+    hidden: true
 ---
 
 This website is where I'll document all of my Projects. You can have a look around. The sidebar on the left has links to all of the different pages I have written, including where you can learn more about me.

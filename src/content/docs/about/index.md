@@ -20,7 +20,8 @@ I'm Studying for my A-Levels in Year 13 at the moment
 The subjects I am studying are:
 - Computer Science
 - Biology
-- EPQ (Y13)
+- EPQ
+
 Subjects I have finished Studying are:
 - AQA Core Maths (Grade A)
 ## Skills
