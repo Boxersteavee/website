@@ -40,7 +40,7 @@ jobs:
             echo "Invalid PR number: $pr_number"
             exit 1
           fi
-          if [[ ! "$head_ref" =~ ^[A-Za-z0-9._/-]+$ || "$head_ref" == *".."* ]]; then
+          if [[ ! "$head_ref" =~ ^[A-Za-z0-9._/-]+$ || "$head_ref" == .* || "$head_ref" == /* || "$head_ref" == *".."* || "$head_ref" == *"//"* || "$head_ref" == */ || "$head_ref" == *. ]]; then
             echo "Invalid head ref: $head_ref"
             exit 1
           fi
@@ -65,7 +65,7 @@ jobs:
               echo "Skipping invalid PR number: $pr_number"
               continue
             fi
-            if [[ ! "$head_ref" =~ ^[A-Za-z0-9._/-]+$ || "$head_ref" == *".."* ]]; then
+            if [[ ! "$head_ref" =~ ^[A-Za-z0-9._/-]+$ || "$head_ref" == .* || "$head_ref" == /* || "$head_ref" == *".."* || "$head_ref" == *"//"* || "$head_ref" == */ || "$head_ref" == *. ]]; then
               echo "Skipping invalid head ref: $head_ref"
               continue
             fi
