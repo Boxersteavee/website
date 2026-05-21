@@ -36,7 +36,7 @@ jobs:
 
       - name: Validate build
         run: npm run build
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Set Git user
         run: |
@@ -49,13 +49,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
+          PR_TITLE="${{ github.event.pull_request.title }}"
           echo "Merging Dependabot PR #${PR_NUMBER}..."
           
           # Fetch the PR branch
           git fetch origin pull/${PR_NUMBER}/head:dependabot-pr
           
           # Merge the PR
-          if git merge --no-ff dependabot-pr -m "Merge Dependabot PR #${PR_NUMBER}: ${{ github.event.pull_request.title }}"; then
+          if git merge --no-ff dependabot-pr -m "Merge Dependabot PR #${PR_NUMBER}: ${PR_TITLE}"; then
             echo "✓ Successfully merged PR #${PR_NUMBER}"
             git push origin dependabot
             
@@ -77,22 +78,30 @@ jobs:
         run: |
           echo "Fetching all open Dependabot PRs..."
           
-          PR_COUNT=$(gh pr list --state open --base dependabot --author app/dependabot --json number --jq 'length')
-          echo "Found ${PR_COUNT} open Dependabot PRs"
+          # Store output to avoid subshell issues
+          PR_DATA=$(gh pr list --state open --base dependabot --author app/dependabot --json number,headRefName,title --jq -r '.[] | "\(.number) \(.headRefName) \(.title)"')
+          PR_COUNT=$(echo "$PR_DATA" | wc -l)
           
-          if [ "$PR_COUNT" -eq 0 ]; then
+          # Check if there are any PRs
+          if [ -z "$PR_DATA" ]; then
             echo "No open Dependabot PRs found."
             exit 0
           fi
           
-          MERGE_FAILURES=0
+          echo "Found ${PR_COUNT} open Dependabot PR(s)"
           
-          gh pr list --state open --base dependabot --author app/dependabot --json number,headRefName,title --jq -r '.[] | "\(.number) \(.headRefName) \(.title)"' | while read PR_NUMBER HEAD_REF PR_TITLE; do
+          MERGE_FAILURES=0
+          MERGE_SUCCESS=0
+          
+          # Process each PR
+          while IFS=' ' read -r PR_NUMBER HEAD_REF PR_TITLE; do
+            [ -z "$PR_NUMBER" ] && continue
+            
             echo ""
             echo "Processing PR #${PR_NUMBER}: ${PR_TITLE}"
             
             # Fetch the PR branch
-            if ! git fetch origin pull/${PR_NUMBER}/head:${HEAD_REF}; then
+            if ! git fetch origin pull/${PR_NUMBER}/head:${HEAD_REF} 2>/dev/null; then
               echo "✗ Failed to fetch PR #${PR_NUMBER}. Skipping..."
               ((MERGE_FAILURES++))
               continue
@@ -103,7 +112,7 @@ jobs:
               echo "✗ Failed to merge PR #${PR_NUMBER}. Aborting merge..."
               git merge --abort
               ((MERGE_FAILURES++))
-              git branch -d ${HEAD_REF} || true
+              git branch -d ${HEAD_REF} 2>/dev/null || true
               continue
             fi
             
@@ -112,25 +121,28 @@ jobs:
               echo "✗ Failed to push after merging PR #${PR_NUMBER}. Aborting..."
               git reset --hard HEAD~1
               ((MERGE_FAILURES++))
-              git branch -d ${HEAD_REF} || true
+              git branch -d ${HEAD_REF} 2>/dev/null || true
               continue
             fi
             
             # Close the PR
             if gh pr close ${PR_NUMBER}; then
               echo "✓ Successfully merged and closed PR #${PR_NUMBER}"
+              ((MERGE_SUCCESS++))
             else
               echo "⚠ Merged PR #${PR_NUMBER} but failed to close it"
             fi
             
             # Clean up the local branch
-            git branch -d ${HEAD_REF} || true
-          done
+            git branch -d ${HEAD_REF} 2>/dev/null || true
+          done <<< "$PR_DATA"
           
           echo ""
+          echo "Summary: ${MERGE_SUCCESS} merged successfully, ${MERGE_FAILURES} failed"
+          
           if [ "$MERGE_FAILURES" -gt 0 ]; then
             echo "⚠ Failed to merge $MERGE_FAILURES PR(s)"
             exit 1
           else
-            echo "✓ Successfully merged all open Dependabot PRs"
+            echo "✓ Successfully processed all Dependabot PRs"
           fi

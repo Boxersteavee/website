@@ -54,9 +54,19 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Create PR from dependabot to master branch
-          gh pr create \
+          if gh pr create \
             --base master \
             --head dependabot \
             --title "Merge Dependabot updates - Version ${{ steps.get_version.outputs.new_version }}" \
             --body "This PR contains combined Dependabot updates and a patch version bump to ${{ steps.get_version.outputs.new_version }}." \
-            --draft=false || echo "PR may already exist"
+            --draft=false; then
+            echo "✓ Pull request created successfully"
+          else
+            # Check if PR already exists
+            if gh pr list --head dependabot --base master --state open --json number | grep -q "number"; then
+              echo "ℹ Pull request already exists for this branch"
+            else
+              echo "⚠ Failed to create pull request"
+              exit 1
+            fi
+          fi
