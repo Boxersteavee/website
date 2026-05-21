@@ -63,7 +63,7 @@ jobs:
             echo "✓ Pull request created successfully"
           else
             # Check if PR already exists
-            if gh pr list --head dependabot --base master --state open --json number | grep -q "number"; then
+            if gh pr list --head dependabot --base master --state open --json number --jq 'length > 0'; then
               echo "ℹ Pull request already exists for this branch"
             else
               echo "⚠ Failed to create pull request"
