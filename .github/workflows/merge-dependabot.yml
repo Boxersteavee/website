@@ -47,9 +47,9 @@ jobs:
         if: github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
-          PR_TITLE="${{ github.event.pull_request.title }}"
           echo "Merging Dependabot PR #${PR_NUMBER}..."
           
           # Fetch the PR branch
@@ -78,23 +78,25 @@ jobs:
         run: |
           echo "Fetching all open Dependabot PRs..."
           
-          # Store output to avoid subshell issues
-          PR_DATA=$(gh pr list --state open --base dependabot --author app/dependabot --json number,headRefName,title --jq -r '.[] | "\(.number) \(.headRefName) \(.title)"')
-          PR_COUNT=$(echo "$PR_DATA" | wc -l)
+          # Use a temporary file to store PR data to avoid subshell issues
+          TEMP_FILE=$(mktemp)
+          gh pr list --state open --base dependabot --author app/dependabot --json number,headRefName,title -q '.[] | "\(.number)|\(.headRefName)|\(.title)"' > "$TEMP_FILE"
           
           # Check if there are any PRs
-          if [ -z "$PR_DATA" ]; then
+          if [ ! -s "$TEMP_FILE" ]; then
             echo "No open Dependabot PRs found."
+            rm -f "$TEMP_FILE"
             exit 0
           fi
           
+          PR_COUNT=$(wc -l < "$TEMP_FILE")
           echo "Found ${PR_COUNT} open Dependabot PR(s)"
           
           MERGE_FAILURES=0
           MERGE_SUCCESS=0
           
           # Process each PR
-          while IFS=' ' read -r PR_NUMBER HEAD_REF PR_TITLE; do
+          while IFS='|' read -r PR_NUMBER HEAD_REF PR_TITLE; do
             [ -z "$PR_NUMBER" ] && continue
             
             echo ""
@@ -103,7 +105,7 @@ jobs:
             # Fetch the PR branch
             if ! git fetch origin pull/${PR_NUMBER}/head:${HEAD_REF} 2>/dev/null; then
               echo "✗ Failed to fetch PR #${PR_NUMBER}. Skipping..."
-              ((MERGE_FAILURES++))
+              MERGE_FAILURES=$((MERGE_FAILURES + 1))
               continue
             fi
             
@@ -111,7 +113,7 @@ jobs:
             if ! git merge --no-ff ${HEAD_REF} -m "Merge Dependabot PR #${PR_NUMBER}: ${PR_TITLE}"; then
               echo "✗ Failed to merge PR #${PR_NUMBER}. Aborting merge..."
               git merge --abort
-              ((MERGE_FAILURES++))
+              MERGE_FAILURES=$((MERGE_FAILURES + 1))
               git branch -d ${HEAD_REF} 2>/dev/null || true
               continue
             fi
@@ -120,7 +122,7 @@ jobs:
             if ! git push origin dependabot; then
               echo "✗ Failed to push after merging PR #${PR_NUMBER}. Aborting..."
               git reset --hard HEAD~1
-              ((MERGE_FAILURES++))
+              MERGE_FAILURES=$((MERGE_FAILURES + 1))
               git branch -d ${HEAD_REF} 2>/dev/null || true
               continue
             fi
@@ -128,14 +130,16 @@ jobs:
             # Close the PR
             if gh pr close ${PR_NUMBER}; then
               echo "✓ Successfully merged and closed PR #${PR_NUMBER}"
-              ((MERGE_SUCCESS++))
+              MERGE_SUCCESS=$((MERGE_SUCCESS + 1))
             else
               echo "⚠ Merged PR #${PR_NUMBER} but failed to close it"
             fi
             
             # Clean up the local branch
             git branch -d ${HEAD_REF} 2>/dev/null || true
-          done <<< "$PR_DATA"
+          done < "$TEMP_FILE"
+          
+          rm -f "$TEMP_FILE"
           
           echo ""
           echo "Summary: ${MERGE_SUCCESS} merged successfully, ${MERGE_FAILURES} failed"
