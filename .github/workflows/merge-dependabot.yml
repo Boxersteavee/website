@@ -29,29 +29,54 @@ jobs:
       - name: Merge Dependabot PR (on PR event)
         if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin pull/${{ github.event.pull_request.number }}/head:${{ github.head_ref }}
-          git merge --no-ff ${{ github.head_ref }} -m "Merge Dependabot PR: ${{ github.event.pull_request.title }}"
+
+          pr_number="${{ github.event.pull_request.number }}"
+          head_ref="${{ github.head_ref }}"
+
+          if [[ ! "$pr_number" =~ ^[0-9]+$ ]]; then
+            echo "Invalid PR number: $pr_number"
+            exit 1
+          fi
+          if [[ ! "$head_ref" =~ ^[A-Za-z0-9._/-]+$ || "$head_ref" == *".."* ]]; then
+            echo "Invalid head ref: $head_ref"
+            exit 1
+          fi
+
+          git fetch origin "pull/${pr_number}/head:${head_ref}"
+          git merge --no-ff "$head_ref" -m "Merge Dependabot PR #${pr_number}"
           git push origin dependabot
 
       # This step will only run when triggered by workflow_dispatch
       - name: Merge all open Dependabot PRs (on manual trigger)
         if: github.event_name == 'workflow_dispatch'
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          gh pr list --state open --base dependabot --search "author:app/dependabot" --json number,headRefName,title | jq -c '.[]' | while read pr; do
-            pr_number=$(echo $pr | jq -r '.number')
-            head_ref=$(echo $pr | jq -r '.headRefName')
-            pr_title=$(echo $pr | jq -r '.title')
+          gh pr list --state open --base dependabot --search "author:app/dependabot" --json number,headRefName,title | jq -c '.[]' | while IFS= read -r pr; do
+            pr_number=$(echo "$pr" | jq -r '.number')
+            head_ref=$(echo "$pr" | jq -r '.headRefName')
+            pr_title=$(echo "$pr" | jq -r '.title')
+
+            if [[ ! "$pr_number" =~ ^[0-9]+$ ]]; then
+              echo "Skipping invalid PR number: $pr_number"
+              continue
+            fi
+            if [[ ! "$head_ref" =~ ^[A-Za-z0-9._/-]+$ || "$head_ref" == *".."* ]]; then
+              echo "Skipping invalid head ref: $head_ref"
+              continue
+            fi
+
             echo "Attempting to merge PR #$pr_number: $pr_title"
             git checkout dependabot
-            git fetch origin pull/$pr_number/head:$head_ref || { echo "Fetch of PR #$pr_number failed. Skipping merge and close."; continue; }
-            git merge --no-ff $head_ref -m "Merge Dependabot PR #$pr_number: $pr_title" || { echo "Merge of PR #$pr_number failed. Skipping close."; continue; }
+            git fetch origin "pull/$pr_number/head:$head_ref" || { echo "Fetch of PR #$pr_number failed. Skipping merge and close."; continue; }
+            git merge --no-ff "$head_ref" -m "Merge Dependabot PR #$pr_number" || { echo "Merge of PR #$pr_number failed. Skipping close."; continue; }
             git push origin dependabot || { echo "Push after merging PR #$pr_number failed. Skipping close."; continue; }
-            gh pr close $pr_number || echo "Closing PR #$pr_number failed."
-            git branch -d $head_ref || echo "Failed to clean up branch $head_ref."
+            gh pr close "$pr_number" || echo "Closing PR #$pr_number failed."
+            git branch -d "$head_ref" || echo "Failed to clean up branch $head_ref."
           done
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
