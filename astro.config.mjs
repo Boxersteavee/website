@@ -30,15 +30,15 @@ export default defineConfig({
         },
         {
           label: 'Projects',
-          autogenerate: { directory: 'projects' },
+          items: [{ autogenerate: { directory: 'projects' } }],
         },
         {
           label: 'About Me',
-          autogenerate: { directory: 'about' },
+          items: [{ autogenerate: { directory: 'about' } }],
         },
         {
           label: 'Archived',
-          autogenerate: {directory: 'archived'},
+          items: [{ autogenerate: { directory: 'archived' } }],
         },
         {
           label: 'Privacy Policy',
