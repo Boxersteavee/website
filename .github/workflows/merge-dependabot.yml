@@ -34,14 +34,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Validate build
-        run: npm run build
-        continue-on-error: false
-
       - name: Set Git user
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Validate build (for context verification)
+        if: github.event_name == 'workflow_dispatch'
+        run: npm run build
+        continue-on-error: false
 
       - name: Merge Dependabot PR (on PR event)
         if: github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]'
@@ -80,7 +81,7 @@ jobs:
           
           # Use a temporary file to store PR data to avoid subshell issues
           TEMP_FILE=$(mktemp)
-          gh pr list --state open --base dependabot --author app/dependabot --json number,headRefName,title -q '.[] | "\(.number)|\(.headRefName)|\(.title)"' > "$TEMP_FILE"
+          gh pr list --state open --base dependabot --search "author:dependabot[bot]" --json number,headRefName,title -q '.[] | "\(.number)|\(.headRefName)|\(.title)"' > "$TEMP_FILE"
           
           # Check if there are any PRs
           if [ ! -s "$TEMP_FILE" ]; then
