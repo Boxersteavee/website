@@ -36,7 +36,11 @@ jobs:
 
       - name: Get new version
         id: get_version
-        run: echo "::set-output name=new_version::$(node -p "require('./package.json').version")"
+        run: echo "new_version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Validate build
+        run: npm run build
+        continue-on-error: false
 
       - name: Commit and push version bump
         run: |
@@ -46,12 +50,13 @@ jobs:
           git push origin dependabot
 
       - name: Create Pull Request to master
-        uses: repo-sync/pull-request@v2
-        with:
-          source_branch: dependabot # Create PR from dependabot
-          destination_branch: master # To the master branch
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_title: "Merge Dependabot updates - Version ${{ steps.get_version.outputs.new_version }}"
-          pr_body: |
-            This PR contains combined Dependabot updates and a patch version bump to ${{ steps.get_version.outputs.new_version }}.
-          pr_allow_empty: true # Allow creating a PR even if the only change is the version bump
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Create PR from dependabot to master branch
+          gh pr create \
+            --base master \
+            --head dependabot \
+            --title "Merge Dependabot updates - Version ${{ steps.get_version.outputs.new_version }}" \
+            --body "This PR contains combined Dependabot updates and a patch version bump to ${{ steps.get_version.outputs.new_version }}." \
+            --draft=false || echo "PR may already exist"
